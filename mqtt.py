@@ -17,11 +17,15 @@ class Network:
         self.topic = topic
         self.on_message = lambda cli, usr, msg: on_message_(self, cli, usr, msg)
         self.connect(usr, pwd)
+        self.connections = 0
         #self.subscribe()
     def connect(self, usr, pwd):
         
         def on_connect(client, userdata, flags, rc):
             if rc == 0:
+                self.connections += 1
+                if self.connections >= 2:
+                    exit()
                 print("Connected to MQTT Broker!")
             else:
                 print("Failed to connect, return code %d\n", rc)
