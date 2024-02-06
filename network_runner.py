@@ -34,13 +34,13 @@ def on_message(net, cli, usr, msg):
     sender = m[:4]
     if sender == net.device_name: return None
     print('[MESSAGE] ',m)
-    m = m[4:]
-    if m == 'host': hosts.append(sender)
-    elif m.startswith(net.device_name) == True:
-        net.publish(net.device_name+'active')
-        print('[NEW URL]')
-        scan(loads(b64decode(m[:4])))
-        net.publish(net.device_name+'request')
+    #m = m[4:]
+    #if m == 'host': hosts.append(sender)
+    #elif m.startswith(net.device_name) == True:
+    #    net.publish(net.device_name+'active')
+    #    print('[NEW URL]')
+    #    scan(loads(b64decode(m[:4])))
+    #    net.publish(net.device_name+'request')
 n = Network(topic='web/scanner')
 n.subscribe()
 n.publish(n.device_name+'connected')
