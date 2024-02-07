@@ -26,7 +26,7 @@ def scan(url, parent):
             new_url = link.attrs.get('href')
             if new_url != None: 
                 if new_url.startswith('//'): new_url = 'https:'+new_url
-                elif new_url.startswith('/'): new_url = url+new_url
+                elif new_url.startswith('/'): new_url = url.split('/')[2]+new_url
                 elif new_url.startswith('#'): continue
                 elif new_url == '': continue
                 print('[INFO] Url Found, "',new_url ,'"')
