@@ -11,6 +11,7 @@ def on_message_(client, userdata, msg):
 
 class Network:
     def __init__(self, broker=broker_, port=port_, topic=sha512(str(int(time()/60/60/24)).encode('utf-8')).hexdigest(), on_message_=on_message_, usr='webcrawler', pwd='Crawler1234') -> None:
+        print(__file__)
         self.device_name = md5(f"{socket.gethostname()}{str(random.randint(1, 100))}".encode('utf-8')).hexdigest()[:4]
         self.broker = broker
         self.port = port
@@ -20,11 +21,11 @@ class Network:
         self.connections = 0
         #self.subscribe()
     def connect(self, usr, pwd):
-        
         def on_connect(client, userdata, flags, rc):
             if rc == 0:
                 self.connections += 1
                 if self.connections >= 2:
+                    print('[WIERD ANNOYING ERROR] exiting')
                     exit()
                 print("Connected to MQTT Broker!")
             else:
